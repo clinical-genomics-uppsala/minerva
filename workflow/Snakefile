@@ -612,6 +612,24 @@ use rule tabix from cnv_sv as cnv_sv_tabix_filtered_cnvkit_vcf with:
         file="cnv_sv/cnvkit_vcf/.+\.pathology\.annotate_cnv\.germline\.filter\.cnv_filter",
 
 
+# HIFICNV
+# HiFiCNV expects HiFi reads aligned with pbmm2, so the BAM is pinned to pbmm2
+# rather than the primary aligner (vacmap), as for cnvkit_batch and pbsv.
+# bai is added to the input section (the module declares bam only) so that the
+# index is built before HiFiCNV runs; the module shell only uses {input.bam}.
+use rule hificnv from cnv_sv as cnv_sv_hificnv with:
+    input:
+        bam="alignment/pbmm2_align/{sample}_{type}.bam",
+        bai="alignment/pbmm2_align/{sample}_{type}.bam.bai",
+
+
+# HiFiCNV writes a bgzipped VCF itself, so only the index is missing.
+# NOTE: no bgzip rule here - that would declare cnv_sv/hificnv/*.vcf.gz twice.
+use rule tabix from cnv_sv as cnv_sv_tabix_hificnv with:
+    wildcard_constraints:
+        file="^cnv_sv/hificnv/.+",
+
+
 # CNVkit reports
 # the inputs here are cns and cnr files from cnvkit_batch
 # t.ex.: "cnv_sv/cnvkit_batch/{sample}/{sample}_{type}.cns"

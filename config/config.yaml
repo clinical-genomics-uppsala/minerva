@@ -29,6 +29,7 @@ reference:
   design_intervals: "{{REF_DATA}}/expected_capture_targets_covered_v2.interval_list"
   panel_full_genes: &panel_full_genes "{{REF_DATA}}/panel_full_genes.bed"
   cnv_pon: &cnv_pon "{{PON_DATA}}/cnvkit_build_normal_reference/cnvkit.PoN.target_2kb.cnn"
+  cnv_excluded_regions: &cnv_excluded_regions "{{REF_DATA}}/cnv.excluded_regions.common_50.hg38.bed.gz" # regions HiFiCNV should ignore
   sv_databases:
     - "/beegfs-storage/data/ref_data/wp3/gnomad/gnomad.v4.1.sv.sites.no_cnv.PASS.vcf.gz"
     - "{{PON_DATA}}/bcftools_merge/sv_normal.vcf.gz"
@@ -89,6 +90,10 @@ filter_vcf:
   cnv_filter: "config/filters/config_hard_filter_cnv_vcf.yaml"
 
 general_report: "config/report.yaml"
+
+hificnv:
+  container: "docker://hydragenetics/hificnv:1.0.1"
+  exclude: *cnv_excluded_regions
 
 merge_cnv_json:
   cytobands: "config/cytoBand.hg38.txt"

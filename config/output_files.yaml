@@ -92,3 +92,19 @@
    - name: "coverage_regions"
      output: "results/qc/mosdepth/{sample}_{type}.regions.bed.gz"
      input: "qc/mosdepth/{sample}_{type}.regions.bed.gz"
+
+   - name: "hificnv_vcf"
+     output: "results/cnv_sv/hificnv/{sample}_{type}.vcf.gz"
+     input: "cnv_sv/hificnv/{sample}_{type}.vcf.gz"
+
+   - name: "hificnv_vcf_index"
+     output: "results/cnv_sv/hificnv/{sample}_{type}.vcf.gz.tbi"
+     input: "cnv_sv/hificnv/{sample}_{type}.vcf.gz.tbi"
+
+   - name: "hificnv_depth_bigwig"
+     output: "results/cnv_sv/hificnv/{sample}_{type}.depth.bw"
+     input: "cnv_sv/hificnv/{sample}_{type}.depth.bw"
+
+   - name: "hificnv_copynum_bedgraph"
+     output: "results/cnv_sv/hificnv/{sample}_{type}.copynum.bedgraph"
+     input: "cnv_sv/hificnv/{sample}_{type}.copynum.bedgraph"
