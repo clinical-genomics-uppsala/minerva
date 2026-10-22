@@ -1,4 +1,11 @@
-# <img src="images/hydragenetics.png" width=40 /> TwiMM
+# Minerva
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="images/minerva_logo.svg">
+    <img width=250px alt="Minerva logo" src="images/minerva_logo.png">
+  </picture>
+</p>
 
 <p align="center">
 <a href="https://twist-myeloma-pipeline.readthedocs.io/en/latest/">Full documentation on ReadTheDocs</a>
@@ -20,11 +27,11 @@
 
 [![License: GPL-3](https://img.shields.io/badge/License-GPL3-yellow.svg)](https://opensource.org/licenses/gpl-3.0.html)
 
-## :speech_balloon: Introduction
+## Introduction
 
-TwiMM is a bioinformatic pipeline designed to analyse hybrid capture long-read (PacBio HiFi) sequencing data from the multiple myeloma gene panel. It detects SNVs/InDels, structural variants (SV), and copy number variants (CNV). SV calling uses three callers in parallel (Severus, PBSV, Sniffles2) whose outputs are merged and annotated with population frequencies via SVDB.
+Minerva is a bioinformatic pipeline designed to analyse hybrid capture long-read (PacBio HiFi) sequencing data from the multiple myeloma gene panel. It detects SNVs/InDels, structural variants (SV), and copy number variants (CNV). SV calling uses three callers in parallel (Severus, PBSV, Sniffles2) whose outputs are merged and annotated with population frequencies via SVDB.
 
-## :heavy_exclamation_mark: Dependencies
+## Dependencies
 
 All dependencies are managed by [pixi](https://pixi.sh). Install pixi, then run:
 
@@ -34,7 +41,7 @@ pixi install
 
 This resolves and installs all required packages (Python, Snakemake, hydra-genetics, and other tools) as defined in `pixi.toml`. Container images for individual pipeline tools are pulled automatically at runtime via Singularity/Apptainer and are listed in `config/config.yaml`.
 
-## :school_satchel: Preparations
+## Preparations
 
 ### Sample data
 
@@ -51,12 +58,12 @@ The following information need to be added to these files:
 | type              | data type identifier (one letter), can be one of **T**umor, **N**ormal  |
 | platform          | type of sequencing platform, e.g. `PACBIO`                              |
 | machine           | specific machine id, e.g. `Revio`                                       |
-| processing_unit   | ?                                                                       |
+| processing_unit   | processing unit ID                                                                       |
 | barcode           | sequence library barcode/index or any character string, but not `NA`    |
 | methylation       | Yes/No                                                                  |
 | bam               | path to BAM file                                                        |
 
-## :white_check_mark: Testing
+## Testing
 
 The pipeline uses [pixi](https://pixi.sh) for environment management. Run a test dry-run locally:
 
@@ -66,7 +73,7 @@ pixi run test-dry
 
 A small test dataset is also available in `.tests/integration/`.
 
-## :rocket: Usage
+## Quick start
 
 ```bash
 # Dry run
@@ -90,6 +97,6 @@ Key output files (see [full list](docs/result_files.md)):
 | `results/reports/html/{sample}_T.pathology.cnv_report.html` | Interactive CNV HTML report |
 | `results/xlsx_reports/{sample}_T_combined_report.xlsx` | Excel report (SNV, SV, CNV + Software Versions) |
 
-## :judge: Rule Graph
+## Rule Graph
 
 ![rule_graph](images/rulegraph.svg)
