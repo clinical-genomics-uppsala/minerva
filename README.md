@@ -1,4 +1,12 @@
 # Minerva
+![Lint](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/lint.yaml/badge.svg?branch=develop)
+![Snakefmt](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/snakefmt.yaml/badge.svg?branch=develop)
+![pycodestyle](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/pycodestyle.yaml/badge.svg?branch=develop)
+![snakemake dry run](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/snakemake-dry-run.yaml/badge.svg?branch=develop)
+![integration test](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/integration.yaml/badge.svg?branch=develop)
+![pytest](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/pytest.yaml/badge.svg?branch=develop)
+[![License: GPL-3](https://img.shields.io/badge/License-GPL3-yellow.svg)](https://opensource.org/licenses/gpl-3.0.html)
+
 
 <p align="center">
   <picture>
@@ -7,29 +15,10 @@
   </picture>
 </p>
 
-<p align="center">
-<a href="https://twist-myeloma-pipeline.readthedocs.io/en/latest/">Full documentation on ReadTheDocs</a>
-</p>
-
-#### Code style validation
-
-![Lint](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/lint.yaml/badge.svg?branch=develop)
-![Snakefmt](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/snakefmt.yaml/badge.svg?branch=develop)
-![pycodestyle](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/pycodestyle.yaml/badge.svg?branch=develop)
-
-#### Code testing
-
-![snakemake dry run](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/snakemake-dry-run.yaml/badge.svg?branch=develop)
-![integration test](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/integration.yaml/badge.svg?branch=develop)
-![pytest](https://github.com/clinical-genomics-uppsala/twist_myeloma_pipeline/actions/workflows/pytest.yaml/badge.svg?branch=develop)
-
-#### License
-
-[![License: GPL-3](https://img.shields.io/badge/License-GPL3-yellow.svg)](https://opensource.org/licenses/gpl-3.0.html)
 
 ## Introduction
 
-Minerva is a bioinformatic pipeline designed to analyse hybrid capture long-read (PacBio HiFi) sequencing data from the multiple myeloma gene panel. It detects SNVs/InDels, structural variants (SV), and copy number variants (CNV). SV calling uses three callers in parallel (Severus, PBSV, Sniffles2) whose outputs are merged and annotated with population frequencies via SVDB.
+Minerva is a bioinformatic pipeline for detecting high-risk genomic markers in multiple myeloma (MM). Minerva is built using [hydra-genetics modules](https://github.com/hydra-genetics) and designed to analyse hybrid capture long-read sequencing data (PacBio HiFi) from gene panels. It uses two aligners: [VACmap](https://github.com/micahvista/VACmap) to increase sensitivity of SV-detection, and [pbmm2](https://github.com/PacificBiosciences/pbmm2) for SNVs/InDels and copy number variants (CNV). For the full list of tools, see [Documentation](https://minerva.readthedocs.io/en/latest/).
 
 ## Dependencies
 
