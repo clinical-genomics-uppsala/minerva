@@ -213,6 +213,18 @@ properties:
     type: string
     description: "Base path to panel-of-normals directory; use {{PON_DATA}} in other string values to reference it."
 
+  hificnv:
+    type: object
+    description: "Configuration for HiFiCNV, a copy number caller for PacBio HiFi reads (run on the pbmm2 BAM)."
+    properties:
+      container:
+        type: string
+        description: "Container image used for HiFiCNV."
+      exclude:
+        type: string
+        description: "BED file of regions HiFiCNV should ignore. Must be set - the rule always passes --exclude."
+    required: ["container", "exclude"]
+
   merge_cnv_json:
     type: object
     description: "Configuration for merging CNV JSON files used by CNV HTML report generation."

@@ -13,6 +13,7 @@ Below is a list of the key software components used in the pipeline:
 | samtools       | 1.16       | A suite of programs for interacting with high-throughput sequencing data, including BAM file manipulation.                   |
 | bedtools       | 2.30.0     | A powerful toolset for genome arithmetic, allowing for the manipulation of genomic intervals and annotations.                |
 | CNVkit         | 0.9.11     | A toolkit for detecting copy number variations in genomic data, particularly useful for analyzing long-read sequencing data. |
+| HiFiCNV        | 1.0.1      | PacBio copy number caller for HiFi reads; run on the pbmm2 BAM with an excluded-regions BED.                                 |
 | Severus        | 1.5        | Tumor-only SV caller optimized for long reads, supporting haplotagged BAMs and panel of normals.                             |
 | PBSV           | 2.9.0      | PacBio SV caller using split reads and soft clips from pbmm2-aligned BAMs.                                                  |
 | Sniffles2      | 2.6.1      | A structural variant caller for long-read sequencing data, providing accurate detection of large genomic rearrangements.     |
