@@ -11,28 +11,43 @@ There are a number of main files that rule the pipeline's execution:
 There is more general information about the content of these files in hydra-genetics documentation in [code standards](https://hydra-genetics.readthedocs.io/en/latest/development/standards/), [config](https://hydra-genetics.readthedocs.io/en/latest/make_pipeline/config/) and [Snakefile](https://hydra-genetics.readthedocs.io/en/latest/make_pipeline/import/).
 
 ## Snakefile
-The `Snakefile` is located in workflow/ and imports hydra-genetics modules and rules as well as modifies these rules when needed. 
+The `Snakefile` is located in `workflow/` and imports hydra-genetics modules and rules as well as modifies these rules when needed. 
 It also imports pipeline specific rules and define rule orders. Finally, this is where the `rule all` is defined.
 
 ## common.smk
-The `common.smk` is located under workflow/rules/. 
+The `common.smk` is located under `workflow/rules/`. 
 This is a general rule taking care of any actions that are not directly connected with running a specific program. 
 It includes version checks, import of config, resources, tsv-files and validations using schemas. 
-Functions used by pipeline specific rules are also defined here as well as the output files using the function **compile_output_list** which programmatically generates a list of all necessary output files for the module to be targeted in the all rule defined in the `Snakemake` file. 
+Functions used by pipeline-specific rules are also defined here as well as the output files using the function **compile_output_list** which programmatically generates a list of all necessary output files for the module to be targeted in the all rule defined in the `Snakemake` file. 
 See further [Result files](https://hydra-genetics.readthedocs.io/en/latest/make_pipeline/results/).
 
 ## config.yaml
-The `config.yaml` is located under config/. 
+The `config.yaml` is located under `config/`. 
 The file ties all the inputs, outputs and other dependencies as well as parameters for different rules together.
 See further [pipeline configuration](https://hydra-genetics.readthedocs.io/en/latest/make_pipeline/config/).
 
 ## resources.yaml
-The `resources.yaml` is located under config/. 
+The `resources.yaml` is located under `config/`. 
 The file declares default resources used by rules as well as resources for specific rules that need more than allocated by default. 
 See further [pipeline configuration](https://hydra-genetics.readthedocs.io/en/latest/make_pipeline/config/).
 
+## CNV-report configuration
+The interactive CNV HTML report (`hydra-genetics/reports` module, `cnv_html_report`/`merge_cnv_json` rules) reads two additional config-referenced files under `config/`:
+
+* `config/cytoBand.hg38.txt` — UCSC cytoband definitions for hg38, referenced by `merge_cnv_json.cytobands` in `config.yaml`. Displays cytobands in the report's chromosome plot; requires `cnv_html_report.cytobands: true` to be enabled.
+* `config/filters/table_filter.yaml` — defines named CNV classification/filter groups (e.g. amplification, deletion, LOH) used to populate the results table's **Type** column and its "filtered" toggle, referenced by `merge_cnv_json.table_filter_config`. Each group is a tree of `any_of`/`all_of`/`not` conditions over fields such as `adjusted_cn`, `baf`, `length`, and `caller`; thresholds are clinical choices and should be tuned rather than used as shipped.
+
+See the full syntax reference in the `reports` module's own docs: [CNV report configuration](https://hydra-genetics-reports.readthedocs.io/en/v2.0.0/cnv_report/) (pinned to the same version as `module_versions.reports` in `config.yaml`).
+
+
+## profile.yaml
+Profiles are saved as yaml files to control how snakemake will be executed, if jobs will be submitted
+to a cluster, use singularity, restart on failure and so forth. It also forwards requested resources to *drmaa* using
+a drmaa variable.
+
+### Default resources (example)
+
 ```yaml
-# ex, default resources
 default_resources:
   threads: 1
   time: "4:00:00"
@@ -41,14 +56,9 @@ default_resources:
   partition: "low"
 ```
 
-
-## profile.yaml
-Profiles are saved as yaml files to control how snakemake will be executed, if jobs will be submitted
-to a cluster, use singularity, restart on failure and so forth. It also forwards requested resources to *drmaa* using
-a drmaa variable.
+### Snakemake settings (example)
 
 ```yaml
-# ex, snakemake settings
 jobs: 100
 keep-going: True
 restart-times: 2
@@ -58,27 +68,45 @@ configfile: "config/config.yaml"
 singularity-args: "-e --cleanenv -B /projects -B /data -B /beegfs
 ```
 
+### `drmaa` settings (example)
+
 ```yaml
-# ex, drmaa settings
 drmaa: " -A wp1 -N 1-1 -t {resources.time} -n {resources.threads} --mem={resources.mem_mb} --mem-per-cpu={resources.mem_per_cpu} --mem-per-cpu={resources.mem_per_cpu} --partition={resources.partition} -J {rule} -e slurm_out/{rule}_%j.err -o slurm_out/{rule}_%j.out"
 drmaa-log-dir: "slurm_out"
 default-resources: [threads=1, time="04:00:00", partition="low", mem_mb="3074", mem_per_cpu="3074"]
 ```
 
-## samples.tsv and units.tsv
-The `samples.tsv` and `units.tsv` are input files that must be generated before running the pipeline and should in general be located in the base folder of the analysis folder, can be changed in the config.yaml. See further [running the pipeline](running.md) and [create input files](https://hydra-genetics.readthedocs.io/en/latest/run_pipeline/create_sample_files/).
+## Input files
+The `samples.tsv` and `units.tsv` are input files that must be generated before running the pipeline and should in general be located in the base folder of the analysis folder, can be changed in the `config.yaml`. See further [running the pipeline](running.md) and [create input files](https://hydra-genetics.readthedocs.io/en/latest/run_pipeline/create_sample_files/).
 
-### Example of `samples.tsv`
+### Samples file (TSV)
 
-| sample | tumor_content |
-|--------|---------------|
-| MM0001 | 0.8           |
-| MM0002 | 0.8           |
+```tsv
+sample	tumor_content
+MM0001	0.8
+MM0002	0.8
+```
 
+| Column Id         | Description                                                             |
+|-------------------|-------------------------------------------------------------------------|
+| sample            | unique sample/patient id, one per row                                   |
+| tumor_content     | tumor content (min 0, max 1) |
 
-### Example of `units.tsv`
+### Units file (TSV)
 
-| sample | type | platform | machine | processing_unit         | barcode | methylation | bam                 |
-|--------|------|----------|---------|-------------------------|---------|-------------|---------------------|
-| MM0001 | T    | PACBIO   | REVIO   | m84045_031032_151755_s4 | XXX     | No          | /path/to/MM0001.bam |
-| MM0002 | T    | PACBIO   | REVIO   | m84045_031032_151756_s5 | ZZZ     | No          | /path/to/MM0002.bam |
+```tsv
+sample	type	platform	machine	processing_unit	barcode	methylation	bam
+MM0001	T	PACBIO	REVIO	m84045_031032_151755_s4	XXX	No	/path/to/MM0001.bam
+MM0002	T	PACBIO	REVIO	m84045_031032_151756_s5	ZZZ	No	/path/to/MM0002.bam
+```
+
+| Column Id         | Description                                                             |
+|-------------------|-------------------------------------------------------------------------|
+| sample            | same sample/patient id as in `samples.tsv`                              |
+| type              | data type identifier (one letter), can be one of **T**umor, **N**ormal  |
+| platform          | type of sequencing platform, e.g. `PACBIO`                              |
+| machine           | specific machine id, e.g. `Revio`                                       |
+| processing_unit   | processing unit ID                                                                       |
+| barcode           | sequence library barcode/index or any character string, but not `NA`    |
+| methylation       | Yes/No                                                                  |
+| bam               | path to BAM file                                                        |
