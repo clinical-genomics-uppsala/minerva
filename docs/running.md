@@ -10,7 +10,7 @@ Minerva is a [Snakemake](https://snakemake.readthedocs.io/) pipeline. All comman
     pixi install
     ```
 
-2. Prepare the input files `samples.tsv` and `units.tsv` (see [samples.tsv and units.tsv](setup.md#samplestsv-and-unitstsv)) and make sure `config/config.yaml` points to them:
+2. Prepare the input files `samples.tsv` and `units.tsv` (see [samples.tsv and units.tsv](setup.md#input-files)) and make sure `config/config.yaml` points to them:
 
     ```yaml
     samples: "config/samples.tsv"
@@ -80,7 +80,7 @@ See the [snakemake CLI documentation](https://snakemake.readthedocs.io/en/stable
 
 ## Snakemake profiles
 
-A [profile](https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles) is a `config.yaml` file in a directory that stores command line options, so that they do not have to be typed every time. It is selected with `--profile <directory>`. The pipeline ships with `profiles/marvin_cpu`, which is used by the `*-full` pixi tasks:
+A [profile](https://snakemake.readthedocs.io/en/stable/executing/cli.html#profiles) is a `config.yaml` file in a directory that stores command-line options, so that they do not have to be typed every time. It is selected with `--profile <directory>`. The pipeline ships with `profiles/marvin_cpu`, which is used by the `*-full` pixi tasks:
 
 ```yaml
 jobs: 8
@@ -88,7 +88,7 @@ keep-going: True
 restart-times: 2
 rerun-incomplete: True
 use-singularity: True
-drmaa: "-p {resources.partition} -t {resources.time} -n {resources.threads} --mem={resources.mem_mb} ... -J {rule} -A wp2 -e slurm/{rule}_%j.err -o slurm/{rule}_%j.out --nodes=1-1"
+drmaa: "-p {resources.partition} -t {resources.time} -n {resources.threads} --mem={resources.mem_mb} -J {rule} -A wp2 -e slurm/{rule}_%j.err -o slurm/{rule}_%j.out --nodes=1-1"
 drmaa-log-dir: "slurm"
 singularity-args: "--cleanenv -B $HOME/.cache,/projects,/beegfs-storage,/tmp,/data/ref_genomes/VEP,/data/ref_genomes/GNOMAD"
 singularity-prefix: "/path/to/singularity_cache/"
