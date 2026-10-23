@@ -18,6 +18,7 @@ test-dry = "snakemake --configfiles config/config.yaml config/config_test.yaml -
 test-full = "snakemake --configfiles config/config.yaml config/config_test.yaml --profile profiles/marvin_cpu"
 ruleg = "snakemake --configfiles config/config.yaml config/config_test.yaml --rulegraph | dot -Tsvg > images/rulegraph.svg"
 dot = "snakemake --configfiles config/config.yaml config/config_test.yaml --rulegraph > images/rulegraph.dot"
+break-cycles = "python workflow/scripts/break_rulegraph_cycles.py images/rulegraph.dot images/rulegraph_acyclic.dot"
 
 # shared conda dependencies
 [dependencies]
@@ -65,6 +66,10 @@ hydra-genetics = "==3.3.2"
 hydra-genetics = "==4.0.0"
 
 # snakevision: isolated because it conflicts with the pipeline dependencies
+[feature.snakevision.tasks]
+snakevision = "snakevision -s all -o images/rulegraph_snakevision.svg images/rulegraph_acyclic.dot"
+snakevision-dark = "snakevision -s all -o images/rulegraph_snakevision_dark.svg images/rulegraph_acyclic.dot -y label_font_color=white label_arrow_stroke=grey bridge_color=black"
+
 [feature.snakevision.dependencies]
 python = "3.12.*"
 
