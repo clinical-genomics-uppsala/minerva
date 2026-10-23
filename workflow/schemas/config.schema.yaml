@@ -1,5 +1,5 @@
 $schema: "http://json-schema.org/draft-04/schema#"
-description: snakemake configuration file for the TwiMM pipeline
+description: snakemake configuration file for the Minerva pipeline
 type: object
 
 properties:

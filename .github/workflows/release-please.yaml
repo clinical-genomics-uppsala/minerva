@@ -12,5 +12,5 @@ jobs:
         id: release
         with:
           release-type: python
-          package-name: TwiMM
+          package-name: Minerva
           default-branch: main
