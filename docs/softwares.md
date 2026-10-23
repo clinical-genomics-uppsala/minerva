@@ -1,6 +1,6 @@
-# Software used in the TwiMM pipeline
+# Software
 
-The TwiMM pipeline utilizes various software tools to process and analyze PacBio hybrid capture sequencing data. 
+Minerva utilizes various software tools to process and analyze the sequencing data. 
 Below is a list of the key software components used in the pipeline:
 
 | Software       | Version    | Description                                                                                                                  |

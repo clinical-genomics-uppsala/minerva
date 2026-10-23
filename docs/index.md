@@ -1,8 +1,3 @@
-# TwiMM pipeline
+# Minerva
 
-**This project is under active development** :smiley:
-
-TwiMM is a bioinformatic pipeline designed to analyse long-read (PacBio) sequencing data from the targeted multiple myeloma gene panel developed by Twist Biosciences (hence the name - TwiMM).
-It reports small variants, CNVs, SVs including translocations as well as QC metrics and plots.
-It is built using Snakemake and the [hydra-genetics](https://github.com/hydra-genetics/hydra-genetics) framework for efficient data processing and analysis.
-
+Minerva is a bioinformatic pipeline for detecting high-risk genomic markers in multiple myeloma (MM). Minerva is built using [hydra-genetics modules](https://github.com/hydra-genetics) and designed to analyse hybrid capture long-read sequencing data (PacBio HiFi) from gene panels. It uses two aligners: [VACmap](https://github.com/micahvista/VACmap) to increase sensitivity of SV-detection, and [pbmm2](https://github.com/PacificBiosciences/pbmm2) for SNVs/InDels and copy number variants (CNV).

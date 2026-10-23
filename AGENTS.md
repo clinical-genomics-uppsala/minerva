@@ -1,11 +1,11 @@
 ---
-name: TwiMM
-description: "TwiMM is a Snakemake-based bioinformatics workflow. Its primary purpose is to analyse hybrid capture long-read (PacBio HiFi) sequencing data from the multiple myeloma gene panel. It detects SNVs/InDels, structural variants (SV), and copy number variants (CNV). SV calling uses three callers in parallel (Severus, PBSV, Sniffles2) whose outputs are merged and annotated with population frequencies via SVDB."
+name: Minerva
+description: "Minerva is a Snakemake-based bioinformatics workflow. Its primary purpose is to analyse hybrid capture long-read (PacBio HiFi) sequencing data from the multiple myeloma gene panel. It detects SNVs/InDels, structural variants (SV), and copy number variants (CNV). SV calling uses three callers in parallel (Severus, PBSV, Sniffles2) whose outputs are merged and annotated with population frequencies via SVDB."
 ---
 
 ## Overview
 
-**TwiMM** is a Snakemake-based bioinformatics pipeline for analysing hybrid-capture long-read (PacBio HiFi) sequencing data from a multiple myeloma gene panel. It is built on the [hydra-genetics](https://github.com/hydra-genetics/) framework, which provides modular, reusable rule collections loaded dynamically from GitHub at runtime.
+**Minerva** is a Snakemake-based bioinformatics pipeline for analysing hybrid-capture long-read (PacBio HiFi) sequencing data from a multiple myeloma gene panel. It is built on the [hydra-genetics](https://github.com/hydra-genetics/) framework, which provides modular, reusable rule collections loaded dynamically from GitHub at runtime.
 
 ## Environment & Package Management
 
