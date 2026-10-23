@@ -1,5 +1,40 @@
 # Changelog
 
+## [1.8.0](https://github.com/clinical-genomics-uppsala/minerva/compare/v1.7.0...v1.8.0) (2026-10-23)
+
+
+### Features
+
+* add default html table filter config ([ad45c67](https://github.com/clinical-genomics-uppsala/minerva/commit/ad45c6733721012043ec880ddf371f77cc6c1fd6))
+* add rulegraph cycle-breaking script and snakevision tasks ([8d89568](https://github.com/clinical-genomics-uppsala/minerva/commit/8d89568866725608b0d9dab6d15e8d67e8b10c08))
+
+
+### Bug Fixes
+
+* add path to cnv filter config to merge_cnv_json section ([3556b89](https://github.com/clinical-genomics-uppsala/minerva/commit/3556b899418565941646136dc9e16fc69cb7fd78))
+* change operator in deletion to &lt; ([460f7b1](https://github.com/clinical-genomics-uppsala/minerva/commit/460f7b1a33cbeb72bb60f2b45c95872350fdcd82))
+* correct clairs version tag ([d57eebe](https://github.com/clinical-genomics-uppsala/minerva/commit/d57eebefafb5513393e40d495bc10641a21e2c70))
+* prevent RecursionError in expand_cfg_placeholders chained refs ([9784371](https://github.com/clinical-genomics-uppsala/minerva/commit/97843711c233de451cd4bce37884ed16b3016c18))
+* remove --no-home, add -B $HOME ([99696fc](https://github.com/clinical-genomics-uppsala/minerva/commit/99696fc6b1062cb64afbd82adb16d6e99f4e95ee))
+
+
+### Documentation
+
+* add new logo ([daff71e](https://github.com/clinical-genomics-uppsala/minerva/commit/daff71e41ffd6c7e73fd663208ebfe805c287c2a))
+* add running.md with pixi, snakemake and profile usage ([0d574b8](https://github.com/clinical-genomics-uppsala/minerva/commit/0d574b8ba3a90768522ca2f1dc405ee0f76bfdbd))
+* correct link to ReadTheDocs ([b947cdb](https://github.com/clinical-genomics-uppsala/minerva/commit/b947cdb57044f41d4705a1c2aef34dfb67ad7015))
+* fix links in badges ([6307b79](https://github.com/clinical-genomics-uppsala/minerva/commit/6307b79bbbf6ee703fcc84c2852ecaa71e853d23))
+* fix typos, links and style ([e548146](https://github.com/clinical-genomics-uppsala/minerva/commit/e548146e4c43584ec9194ea9c15fb64e2a79c323))
+* rename pipeline to Minerva in index, intro and software list ([d655217](https://github.com/clinical-genomics-uppsala/minerva/commit/d6552175686bf7216c2e4017a54b96a09d7b5291))
+* rename site to Minerva in mkdocs.yaml ([ce785e4](https://github.com/clinical-genomics-uppsala/minerva/commit/ce785e4488e25ba32f0b630db2a11288666e9456))
+* restructure setup page and tidy wording ([5a4d13e](https://github.com/clinical-genomics-uppsala/minerva/commit/5a4d13ef1e398ca9153a989dd266a5532b24484f))
+* upd intro, bages and links in README.md ([2ae6b88](https://github.com/clinical-genomics-uppsala/minerva/commit/2ae6b88d9d93405494c7eb5359b18215df521b85))
+* upd README.md ([da7c901](https://github.com/clinical-genomics-uppsala/minerva/commit/da7c901129c35a18c07148eae5840fc6eca413ed))
+* upd the line on reports and clairs version ([37f568e](https://github.com/clinical-genomics-uppsala/minerva/commit/37f568e16248dcca22e63c9806d1bb2c6ddc3823))
+* update docs with the new html report ([843fd50](https://github.com/clinical-genomics-uppsala/minerva/commit/843fd500002430f83651d962648de5659722e893))
+* update README with Minerva name, run instructions and themed rule graph ([06b66a6](https://github.com/clinical-genomics-uppsala/minerva/commit/06b66a6827d33662716fe3165135dbc766a3a949))
+* update refs to cnv filter table ([9f37c64](https://github.com/clinical-genomics-uppsala/minerva/commit/9f37c64fe537c2af1891d9c7f5f110a588503fc8))
+
 ## [1.7.0](https://github.com/clinical-genomics-uppsala/TwiMM/compare/v1.6.0...v1.7.0) (2026-07-21)
 
 
