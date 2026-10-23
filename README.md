@@ -30,29 +30,15 @@ pixi install
 
 This resolves and installs all required packages (Python, Snakemake, hydra-genetics, and other tools) as defined in `pixi.toml`. Container images for individual pipeline tools are pulled automatically at runtime via Singularity/Apptainer and are listed in `config/config.yaml`.
 
-## Preparations
+## Preparing inputs
 
-### Sample data
+### Input files
 
-Input data should be added to [`samples.tsv`](https://github.com/hydra-genetics/twist_myelom/blob/develop/config/samples.tsv)
-and [`units.tsv`](https://github.com/hydra-genetics/twist_myelom/blob/develop/config/units.tsv).
-The following information need to be added to these files:
+The `samples.tsv` and `units.tsv` are input files that must be generated before running the pipeline from BAM files using hydra-genetics' [create input files tool](https://hydra-genetics.readthedocs.io/en/latest/run_pipeline/create_sample_files/). For further information see [Setup](docs/setup.md#input-files).
 
-| Column Id         | Description                                                             |
-|-------------------|-------------------------------------------------------------------------|
-| **`samples.tsv`** |
-| sample            | unique sample/patient id, one per row                                   |
-| **`units.tsv`**   | processed and raw BAM files should be in separate units files           |
-| sample            | same sample/patient id as in `samples.tsv`                              |
-| type              | data type identifier (one letter), can be one of **T**umor, **N**ormal  |
-| platform          | type of sequencing platform, e.g. `PACBIO`                              |
-| machine           | specific machine id, e.g. `Revio`                                       |
-| processing_unit   | processing unit ID                                                                       |
-| barcode           | sequence library barcode/index or any character string, but not `NA`    |
-| methylation       | Yes/No                                                                  |
-| bam               | path to BAM file                                                        |
 
-## Testing
+
+## Dry run
 
 The pipeline uses [pixi](https://pixi.sh) for environment management. Run a test dry-run locally:
 
@@ -62,7 +48,7 @@ pixi run test-dry
 
 A small test dataset is also available in `.tests/integration/`.
 
-## Quick start
+## Real run
 
 ```bash
 # Dry run
@@ -72,20 +58,17 @@ pixi run all-dry
 pixi run all-full
 ```
 
-Refer to [snakemake docs](https://snakemake.readthedocs.io/en/stable/executing/cli.html) for advanced usage.
+Refer to [running the pipeline](docs/running.md) for more information.
 
 ### Output files
 
-Key output files (see [full list](docs/result_files.md)):
+The pipeline produces a number of output files includong BAM and VCF files, HTML- and Excel-reports. The exact files can be configured via [output config](config/output_files.yaml).
 
-| File | Description |
-|------|-------------|
-| `results/snv_indels/{sample}_T.phased.include.panel.vep_annotated.vcf.gz` | Phased SNVs/InDels annotated with VEP |
-| `results/cnv_sv/svdb_query/{sample}_T.vcf` | Merged SVs annotated with population frequencies |
-| `results/cnv_sv/cnvkit_vcf/{sample}_T.pathology.annotate_cnv.germline.vcf` | Annotated CNVs |
-| `results/reports/html/{sample}_T.pathology.cnv_report.html` | Interactive CNV HTML report |
-| `results/xlsx_reports/{sample}_T_combined_report.xlsx` | Excel report (SNV, SV, CNV + Software Versions) |
+Full list of outputs [is available here](docs/result_files.md), also refer to the [output section here](docs/running.md#output).
 
 ## Rule Graph
 
-![rule_graph](images/rulegraph.svg)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/rulegraph_snakevision_dark.svg">
+  <img alt="Rule graph" src="images/rulegraph_snakevision.svg">
+</picture>
