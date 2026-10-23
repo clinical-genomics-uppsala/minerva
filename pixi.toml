@@ -64,6 +64,14 @@ hydra-genetics = "==3.3.2"
 [feature.hg4.pypi-dependencies]
 hydra-genetics = "==4.0.0"
 
+# snakevision: isolated because it conflicts with the pipeline dependencies
+[feature.snakevision.dependencies]
+python = "3.12.*"
+
+[feature.snakevision.pypi-dependencies]
+snakevision = "*"
+
 [environments]
 default = { features = ["hg4"], solve-group = "hg4" }
 hg3 = { features = ["hg3"], solve-group = "hg3" }
+snakevision = { features = ["snakevision"], no-default-feature = true, solve-group = "snakevision" }
