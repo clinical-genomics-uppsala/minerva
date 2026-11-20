@@ -1,6 +1,6 @@
 # Changelog
 
-## [1.8.0](https://github.com/clinical-genomics-uppsala/minerva/compare/v1.7.0...v1.8.0) (2026-10-23)
+## [0.10.0](https://github.com/clinical-genomics-uppsala/minerva/compare/v0.9.0...v0.10.0) (2026-10-23)
 
 
 ### Features
@@ -35,7 +35,7 @@
 * update README with Minerva name, run instructions and themed rule graph ([06b66a6](https://github.com/clinical-genomics-uppsala/minerva/commit/06b66a6827d33662716fe3165135dbc766a3a949))
 * update refs to cnv filter table ([9f37c64](https://github.com/clinical-genomics-uppsala/minerva/commit/9f37c64fe537c2af1891d9c7f5f110a588503fc8))
 
-## [1.7.0](https://github.com/clinical-genomics-uppsala/TwiMM/compare/v1.6.0...v1.7.0) (2026-07-21)
+## [0.9.0](https://github.com/clinical-genomics-uppsala/TwiMM/compare/v0.8.0...v0.9.0) (2026-07-21)
 
 
 ### Features
@@ -131,7 +131,7 @@
 * update rulegraphs ([83868c0](https://github.com/clinical-genomics-uppsala/TwiMM/commit/83868c0b203b207e586f48700063e995510ee7e0))
 * update rulegraphs ([5bf865b](https://github.com/clinical-genomics-uppsala/TwiMM/commit/5bf865bd562c5df2979cc50d8a77cac9bcc4db3d))
 
-## [1.5.0](https://github.com/clinical-genomics-uppsala/TwiMM/compare/v1.4.0...v1.5.0) (2026-02-11)
+## [0.8.0](https://github.com/clinical-genomics-uppsala/TwiMM/compare/v0.7.0...v0.8.0) (2026-02-11)
 
 
 ### Features
@@ -158,7 +158,7 @@
 * upd rulegraphs and README.md ([e214d87](https://github.com/clinical-genomics-uppsala/TwiMM/commit/e214d87a8e3c9fb5f3a615b7c4356fdc3b89cbf1))
 * update rulegraphs ([7e65f87](https://github.com/clinical-genomics-uppsala/TwiMM/commit/7e65f87057b246ffbab6e1fd941b7962aa612aae))
 
-## [1.4.0](https://github.com/clinical-genomics-uppsala/TwiMM/compare/v1.3.0...v1.4.0) (2026-01-22)
+## [0.7.0](https://github.com/clinical-genomics-uppsala/TwiMM/compare/v0.6.0...v0.7.0) (2026-01-22)
 
 
 ### Features
@@ -174,14 +174,14 @@
 
 * update version_files array ([fcf8d44](https://github.com/clinical-genomics-uppsala/TwiMM/commit/fcf8d449a02d44933e2845596003ee8d1e3ad527))
 
-## [1.3.0](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v1.2.1...v1.3.0) (2025-12-15)
+## [0.6.0](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v0.5.1...v0.6.0) (2025-12-15)
 
 
 ### Features
 
 * add sequali and multiqc_long_read ([62c2f14](https://www.github.com/clinical-genomics-uppsala/TwiMM/commit/62c2f14e29cbec013a75ee1e16df4c8e9d6f0cf9))
 
-### [1.2.1](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v1.2.0...v1.2.1) (2025-12-10)
+### [0.5.1](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v0.5.0...v0.5.1) (2025-12-10)
 
 
 ### Documentation
@@ -192,7 +192,7 @@
 * update site name ([daa7820](https://www.github.com/clinical-genomics-uppsala/TwiMM/commit/daa7820d2f8d37b4f05bf93d824b82500c20960b))
 * update the documentation ([90b8000](https://www.github.com/clinical-genomics-uppsala/TwiMM/commit/90b8000696b3c1dc5c8eb047c75da3ec34387c7e))
 
-## [1.2.0](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v1.1.0...v1.2.0) (2025-12-05)
+## [0.5.0](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v0.4.0...v0.5.0) (2025-12-05)
 
 
 ### Features
@@ -214,7 +214,7 @@
 * add two dags ([c537dce](https://www.github.com/clinical-genomics-uppsala/TwiMM/commit/c537dce05f2ac7e95230268475e08b5acd1d9eb0))
 * add two DAGs ([2712b8a](https://www.github.com/clinical-genomics-uppsala/TwiMM/commit/2712b8aafd2e13d0a0d58aa03b2bddd2d114926b))
 
-## [1.1.0](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v1.0.0...v1.1.0) (2025-11-17)
+## [0.4.0](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v0.3.0...v0.4.0) (2025-11-17)
 
 
 ### Features
@@ -228,7 +228,7 @@
 * add safe conversion of empty strings to NaN ([cba8fd8](https://www.github.com/clinical-genomics-uppsala/TwiMM/commit/cba8fd837da2a14d5f81e11739560457cfdce103))
 * use snakemake.config.get not snakemake.params.get ini reports script ([a133986](https://www.github.com/clinical-genomics-uppsala/TwiMM/commit/a13398699568b713b4bec61aa39da7ee5c85a5d0))
 
-## [1.0.0](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v0.1.1...v1.0.0) (2025-11-07)
+## [0.3.0](https://www.github.com/clinical-genomics-uppsala/TwiMM/compare/v0.1.1...v0.3.0) (2025-11-07)
 
 
 ### ⚠ BREAKING CHANGES
