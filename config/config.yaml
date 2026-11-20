@@ -5,7 +5,7 @@ samples: "config/samples_T.tsv"
 units: "config/units_T.tsv"
 
 default_container: "docker://hydragenetics/common:4.3.0"
-pipeline_version: "v1.8.0"
+pipeline_version: "v0.10.0" # x-release-please-version
 
 REF_DATA: "/beegfs-storage/projects/wp2/nobackup/Twist_Myelom/ref_data"
 PON_DATA: "/beegfs-storage/projects/wp2/nobackup/Twist_Myelom/build_pon/results"
