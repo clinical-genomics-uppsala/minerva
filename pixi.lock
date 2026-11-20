@@ -156,7 +156,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/a0/61/5c78b91c3143ed5c14207f463aecfc8f9dbb5092fb2869baf37c273b2705/gitdb-4.0.12-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/6a/09/e21df6aef1e1ffc0c816f0522ddc3f6dcded766c3261813131c78a704470/gitpython-3.1.46-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f0/0f/310fb31e39e2d734ccaa2c0fb981ee41f7bd5056ce9bc29b2248bd569169/humanfriendly-10.0-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/5d/ab/aec9bf0988a935c6ddd933400f564d9184d3c1dadd064c12e0e03f66b081/hydra_genetics-4.0.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/2e/e1/5d3a90fde95540765fe06eef78202fb61130713a18fa86fa7c7f144bfeef/hydra_genetics-4.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0e/61/66938bbb5fc52dbdf84594873d5b51fb1f7c7794e9c0f5bd885f30bc507b/idna-3.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fa/5e/f8e9a1d23b9c20a551a8a02ea3637b4642e22c2626e3a13a9a29cdea99eb/importlib_metadata-8.7.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/80/21/ae597efc7ed8caaa43fb35062288baaf99a7d43ff0cf66452ddf47604ee6/Jinja2-3.0.1-py3-none-any.whl
@@ -303,7 +303,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/a0/61/5c78b91c3143ed5c14207f463aecfc8f9dbb5092fb2869baf37c273b2705/gitdb-4.0.12-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/6a/09/e21df6aef1e1ffc0c816f0522ddc3f6dcded766c3261813131c78a704470/gitpython-3.1.46-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/f0/0f/310fb31e39e2d734ccaa2c0fb981ee41f7bd5056ce9bc29b2248bd569169/humanfriendly-10.0-py2.py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/5d/ab/aec9bf0988a935c6ddd933400f564d9184d3c1dadd064c12e0e03f66b081/hydra_genetics-4.0.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/2e/e1/5d3a90fde95540765fe06eef78202fb61130713a18fa86fa7c7f144bfeef/hydra_genetics-4.3.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/0e/61/66938bbb5fc52dbdf84594873d5b51fb1f7c7794e9c0f5bd885f30bc507b/idna-3.11-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/fa/5e/f8e9a1d23b9c20a551a8a02ea3637b4642e22c2626e3a13a9a29cdea99eb/importlib_metadata-8.7.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/80/21/ae597efc7ed8caaa43fb35062288baaf99a7d43ff0cf66452ddf47604ee6/Jinja2-3.0.1-py3-none-any.whl
@@ -1662,10 +1662,10 @@ packages:
   - gitpython
   - pyaml
   - packaging
-- pypi: https://files.pythonhosted.org/packages/5d/ab/aec9bf0988a935c6ddd933400f564d9184d3c1dadd064c12e0e03f66b081/hydra_genetics-4.0.0-py3-none-any.whl
+- pypi: https://files.pythonhosted.org/packages/2e/e1/5d3a90fde95540765fe06eef78202fb61130713a18fa86fa7c7f144bfeef/hydra_genetics-4.3.0-py3-none-any.whl
   name: hydra-genetics
-  version: 4.0.0
-  sha256: 5b002fa18fb2e3ee3139599c2a423194a61725afccde32b2abed5511c093c6d4
+  version: 4.3.0
+  sha256: 8757c58321035d738da56635208ac927b3212fa5c971fc3f838a42ddc12ee701
   requires_dist:
   - pandas>=1.3.1
   - click>=8,<9
@@ -1676,6 +1676,8 @@ packages:
   - gitpython
   - pyaml
   - packaging
+  - urllib3>=1.26
+  - requests
   requires_python: '>=3.8'
 - conda: https://conda.anaconda.org/conda-forge/linux-64/icu-68.2-h9c3ff4c_0.tar.bz2
   sha256: 8b39b408cc8b1450454ac8bb7bf7b56ca8b787fbfc26c767a21d5df57dffeab7
