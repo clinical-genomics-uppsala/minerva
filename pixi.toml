@@ -63,7 +63,7 @@ hydra-genetics = "==3.3.2"
 
 # hydra-genetics 4.x / Snakemake 7 environment
 [feature.hg4.pypi-dependencies]
-hydra-genetics = "==4.0.0"
+hydra-genetics = "==4.3.0"
 
 # snakevision: isolated because it conflicts with the pipeline dependencies
 [feature.snakevision.tasks]
