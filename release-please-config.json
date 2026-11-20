@@ -1,0 +1,21 @@
+{
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+  "packages": {
+    ".": {
+      "release-type": "simple",
+      "package-name": "Minerva",
+      "include-component-in-tag": false,
+      "extra-files": [
+        {
+          "type": "toml",
+          "path": "pixi.toml",
+          "jsonpath": "$.workspace.version"
+        },
+        {
+          "type": "generic",
+          "path": "config/config.yaml"
+        }
+      ]
+    }
+  }
+}
