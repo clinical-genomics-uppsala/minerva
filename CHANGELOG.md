@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.1](https://github.com/clinical-genomics-uppsala/minerva/compare/v0.10.0...v0.10.1) (2026-11-20)
+
+
+### Bug Fixes
+
+* **config:** restore snv_pon YAML anchor ([3631f03](https://github.com/clinical-genomics-uppsala/minerva/commit/3631f03f07e6f74d7494f6f5a25a516541acc81a))
+
 ## [0.10.0](https://github.com/clinical-genomics-uppsala/minerva/compare/v0.9.0...v0.10.0) (2026-10-23)
 
 
