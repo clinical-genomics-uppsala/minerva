@@ -118,7 +118,3 @@ def get_concat_caller_vcfs(wildcards):
         f"snv_indels/clairs_to/{wildcards.sample}_{wildcards.type}.caller_tagged.vcf.gz",
         f"snv_indels/deepsomatic_t_only/{wildcards.sample}_{wildcards.type}.caller_tagged.vcf.gz",
     ]
-
-
-def get_ubam_input(wildcards, units):
-    return units.loc[(wildcards.sample, wildcards.type), "bam"].tolist()
