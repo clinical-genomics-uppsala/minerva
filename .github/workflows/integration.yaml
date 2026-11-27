@@ -7,7 +7,7 @@ on:
 jobs:
   integration-small-singularity:
     name: integration small data set singularity
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python 3.11
