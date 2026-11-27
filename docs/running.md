@@ -17,7 +17,9 @@ Minerva is a [Snakemake](https://snakemake.readthedocs.io/) pipeline. All comman
     units: "config/units.tsv"
     ```
 
-3. Check the main options in `config/config.yaml`, e.g. `aligner` (`vacmap` or `pbmm2`), `use_deepsomatic` (DeepSomatic-TO instead of ClairS-TO) and `reference.sv_databases`.
+3. Check the main options in `config/config.yaml`, e.g. `aligner` (`vacmap` or `pbmm2`), `use_deepsomatic` and `reference.sv_databases`.
+   `use_deepsomatic` is required and has no default: set it to `false` to call SNVs with ClairS-TO only, or `true` to run ClairS-TO and DeepSomatic-TO and concatenate their calls.
+   A config without it fails validation with `'use_deepsomatic' is a required property`.
 
 4. Container images are pulled automatically at runtime with Singularity/Apptainer, so it must be available on the machine that runs the pipeline.
 

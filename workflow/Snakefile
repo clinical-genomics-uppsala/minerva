@@ -660,7 +660,7 @@ rule reports_compile_xlsx_report:
                     "clairs-to": config.get("clairs_to_call", {}).get("container", ""),
                     "deepsomatic": config.get("deepsomatic_t_only", {}).get("container", ""),
                 }
-                if config.get("use_deepsomatic", False)
+                if config["use_deepsomatic"]
                 else {"clairs-to": config.get("clairs_to_call", {}).get("container", "")}
             ),
         },
