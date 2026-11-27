@@ -411,7 +411,7 @@ properties:
 
   use_deepsomatic:
     type: boolean
-    description: "When false (default): use ClairS-TO only. When true: run both ClairS-TO and DeepSomatic; each VCF is tagged with a CALLER INFO field and the results are concatenated for downstream processing."
+    description: "Required. When false: use ClairS-TO only. When true: run both ClairS-TO and DeepSomatic; each VCF is tagged with a CALLER INFO field and the results are concatenated for downstream processing."
 
   vacmap_align:
     type: object
@@ -501,6 +501,7 @@ required:
   - severus_t_only
   - sniffles2_call
   - svdb_merge
+  - use_deepsomatic
   - vacmap_align
   - vep
   - whatshap_phase
