@@ -1,7 +1,5 @@
-import argparse
 import functools
 import gzip
-import json
 import logging
 import re
 
@@ -538,10 +536,12 @@ def create_report(snakemake_obj: Any):
 
     # Derive the expected output column list once so it can be reused for
     # empty-DataFrame fallbacks (preserving headers even when there are no rows).
-    snv_output_cols = [c if c != "SYMBOL" else "GENE" for c in columns_keep_snv]
-    if "POS" in snv_output_cols and "ALT" in snv_output_cols:
-        snv_output_cols.remove("ALT")
-        snv_output_cols.insert(snv_output_cols.index("POS") + 1, "ALT")
+    # Column order is computed once: ALT moved right after POS.
+    snv_cols_ordered = list(columns_keep_snv)
+    if "POS" in snv_cols_ordered and "ALT" in snv_cols_ordered:
+        snv_cols_ordered.remove("ALT")
+        snv_cols_ordered.insert(snv_cols_ordered.index("POS") + 1, "ALT")
+    snv_output_cols = [c if c != "SYMBOL" else "GENE" for c in snv_cols_ordered]
 
     if not snv_all_df.empty:
         logging.info("Filtering out unwanted SNVs and SNVs not passing the tool's default filter.")
@@ -550,13 +550,7 @@ def create_report(snakemake_obj: Any):
 
         logging.info("Removing unwanted columns.")
         # Ensure columns exist before selecting
-        existing_cols = [c for c in columns_keep_snv if c in snv_all_df.columns]
-
-        # Move ALT after POS
-        if "POS" in existing_cols and "ALT" in existing_cols:
-            existing_cols.remove("ALT")
-            pos_idx = existing_cols.index("POS")
-            existing_cols.insert(pos_idx + 1, "ALT")
+        existing_cols = [c for c in snv_cols_ordered if c in snv_all_df.columns]
 
         snv_picked_columns = snv_all_df[existing_cols]
         snv_picked_columns = snv_picked_columns.rename(columns={"SYMBOL": "GENE"})
@@ -648,35 +642,4 @@ def create_report(snakemake_obj: Any):
 
 
 if __name__ == "__main__":
-    if "snakemake" in dir():
-        # Running inside Snakemake
-        create_report(snakemake)  # type: ignore
-    else:
-        # If 'snakemake' is not defined, use argparse
-        parser = argparse.ArgumentParser(description="Compile XLSX report from VCF files.")
-        parser.add_argument("--vcf-snv", required=True, help="Path to SNV VCF file")
-        parser.add_argument("--vcf-sv", required=True, help="Path to SV VCF file")
-        parser.add_argument("--vcf-cnv", required=True, help="Path to CNV VCF file")
-        parser.add_argument("--output-xlsx", "-o", required=True, help="Path to output XLSX file")
-        parser.add_argument("--filter-config", required=True, help="Path to filter config YAML file")
-        parser.add_argument("--genes-bed", help="Path to genes BED file", default="")
-        parser.add_argument("--software-versions", help="JSON dict of tool→container strings", default="{}")
-        parser.add_argument("--sample", help="Sample name", default="unknown")
-        parser.add_argument("--log", help="Path to log file", default=None)
-
-        args = parser.parse_args()
-
-        # Create a mock object that behaves like the snakemake object
-        class SnakemakeMock:
-            def __init__(self, args):
-                self.input = argparse.Namespace(vcf_snv=args.vcf_snv, vcf_sv=args.vcf_sv, vcf_cnv=args.vcf_cnv)
-                self.output = argparse.Namespace(xlsx=args.output_xlsx)
-                self.params = argparse.Namespace(
-                    filter_config=args.filter_config,
-                    genes_bed=args.genes_bed,
-                    software_versions=json.loads(args.software_versions),
-                )
-                self.wildcards = argparse.Namespace(sample=args.sample)
-                self.log = [args.log] if args.log else []
-
-        create_report(SnakemakeMock(args))
+    create_report(snakemake)  # type: ignore # noqa: F821

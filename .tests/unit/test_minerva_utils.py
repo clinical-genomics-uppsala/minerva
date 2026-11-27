@@ -2,7 +2,6 @@ import sys
 from pathlib import Path
 from types import SimpleNamespace
 
-import pandas as pd
 import pytest
 
 TEST_DIR = Path(__file__).parent.resolve()
@@ -16,7 +15,6 @@ from minerva_utils import (  # type: ignore
     get_tc_file,
     get_snv_caller_output,
     get_concat_caller_vcfs,
-    get_ubam_input,
 )
 
 
@@ -135,23 +133,3 @@ def test_get_concat_caller_vcfs():
         "snv_indels/clairs_to/sample1_T.caller_tagged.vcf.gz",
         "snv_indels/deepsomatic_t_only/sample1_T.caller_tagged.vcf.gz",
     ]
-
-
-# --- Tests for get_ubam_input ---
-def test_get_ubam_input():
-    # Mirrors the production Illumina MultiIndex built in common.smk
-    # (sample, type, flowcell, lane, barcode); get_ubam_input looks up only
-    # by (sample, type), so this exercises the partial-index lookup rather
-    # than an exact match on every level.
-    units = pd.DataFrame(
-        {
-            "sample": ["sample1", "sample1", "sample2"],
-            "type": ["T", "T", "T"],
-            "flowcell": ["fc1", "fc1", "fc1"],
-            "lane": ["L1", "L2", "L1"],
-            "barcode": ["bc1", "bc1", "bc1"],
-            "bam": ["a.bam", "b.bam", "c.bam"],
-        }
-    ).set_index(["sample", "type", "flowcell", "lane", "barcode"], drop=False).sort_index()
-    wc = wildcards(sample="sample1", type="T")
-    assert get_ubam_input(wc, units) == ["a.bam", "b.bam"]

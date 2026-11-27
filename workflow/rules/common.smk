@@ -3,13 +3,11 @@ __copyright__ = "Copyright 2025, Andrei Guliaev"
 __email__ = "andrei.guliaev@scilifelab.uu.se"
 __license__ = "GPL-3"
 
-import itertools
 import numpy as np
 import pathlib
 import pandas as pd
 import sys
 import yaml
-from datetime import datetime
 from snakemake.utils import validate
 from snakemake.utils import min_version
 
@@ -109,10 +107,7 @@ validate(samples, schema="../schemas/samples.schema.yaml")
 
 units = pandas.read_table(config["units"], dtype=str)
 
-if units.platform.iloc[0] in ["PACBIO", "ONT"]:
-    units = units.set_index(["sample", "type", "processing_unit", "barcode"], drop=False).sort_index()
-else:  # assume that the platform Illumina data with a lane and flowcell columns
-    units = units.set_index(["sample", "type", "flowcell", "lane", "barcode"], drop=False).sort_index()
+units = units.set_index(["sample", "type", "processing_unit", "barcode"], drop=False).sort_index()
 
 validate(units, schema="../schemas/units.schema.yaml")
 
@@ -236,7 +231,3 @@ def get_snv_caller_output(wildcards):
 
 
 get_concat_caller_vcfs = pipeline_utils.get_concat_caller_vcfs
-
-
-def get_ubam_input(wildcards):
-    return pipeline_utils.get_ubam_input(wildcards, units)
